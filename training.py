@@ -4,6 +4,7 @@ import pickle
 states = {} 
 
 # value of each outcome (for the computer)
+# values can be adjusted
 LOSS = -10
 WIN = 1
 TIE = -2
@@ -38,9 +39,11 @@ def didWin(curr, c):
 def getResults(curr, c):
     global states
 
-    if (c == 'x' and didWin(curr, c)): #computer win
+    if (didWin(curr, 'x')): #computer win
+        states[curr] = 'x win'
         return WIN
-    elif (c == 'o' and didWin(curr, c)): #player win
+    elif (didWin(curr, 'o')): #player win
+        states[curr] = 'o win'
         return LOSS
 
     nextstates = []
@@ -54,6 +57,7 @@ def getResults(curr, c):
     
     # if game ends in a tie
     if gameover:
+        states[curr] = 'tie'
         return TIE
     
     ans = 0
@@ -72,7 +76,7 @@ def getResults(curr, c):
     
     states[curr] = bestNex # selects best next state
     
-    return ans
+    return ans / len(nextstates)
 
 # computer goes first (x)
 getResults('---------', 'x')

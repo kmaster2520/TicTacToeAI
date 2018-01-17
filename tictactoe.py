@@ -1,4 +1,5 @@
 import pickle
+from training import didWin
 
 # computer is x
 # player is o
@@ -10,7 +11,16 @@ with open("gametree.pkl", "rb") as f:
     curr = '---------'
     while True:
         curr = states[curr]
-        #
+
+        if states[curr] == 'x win':
+            print('Computer Wins')
+            break
+        
+        if states[curr] == 'tie':
+            print('Tie')
+            break
+
+        # print current game state
         print(curr[0] + curr[1] + curr[2])
         print(curr[3] + curr[4] + curr[5])
         print(curr[6] + curr[7] + curr[8])
@@ -28,6 +38,10 @@ with open("gametree.pkl", "rb") as f:
         #
         mov -= 1
         curr = curr[:mov] + 'o' + curr[mov+1:]
+
+        if states[curr] == 'o win':
+            print('Player Wins')
+            break
 
 
 
