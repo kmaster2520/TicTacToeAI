@@ -77,7 +77,7 @@ def getResults(curr, c):
     states[curr] = bestNex # selects best next state
     
     return ans / len(nextstates)
-
+git
 getResults('---------C', 'x') #computer goes first
 getResults('---------P', 'o') #player goes first
 
