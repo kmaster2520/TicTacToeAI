@@ -78,7 +78,6 @@ def getResults(curr, c):
     
     return ans / len(nextstates)
 
-# computer goes first (x)
 getResults('---------C', 'x') #computer goes first
 getResults('---------P', 'o') #player goes first
 
