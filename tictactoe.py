@@ -59,7 +59,7 @@ def playerTurn():
     return 1
 
 while True:
-    order = input('Press 1 for player-first, 0 for computer-first: ')
+    order = str(input('Press 1 for player-first, 0 for computer-first: '))
     if order == '1' or order == '0':
         break
 

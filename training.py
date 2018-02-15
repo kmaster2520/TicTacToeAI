@@ -36,6 +36,14 @@ def didWin(curr, c):
 
     return False
 
+def getNextStates(curr, c):
+    nextstates = []
+    for i in range(9):
+        if curr[i] == '-':
+            nextstates.append(curr[:i] + c + curr[i+1:])
+    return nextstates
+
+
 def getResults(curr, c):
     global states
 
@@ -46,17 +54,11 @@ def getResults(curr, c):
         states[curr] = 'o win'
         return LOSS
 
-    nextstates = []
-
-    gameover = True
-    # generates next states
-    for i in range(9):
-        if curr[i] == '-':
-            nextstates.append(curr[:i] + c + curr[i+1:])
-            gameover = False
+    # generate next states
+    nextstates = getNextStates(curr, c)
     
     # if game ends in a tie
-    if gameover:
+    if len(nextstates) == 0:
         states[curr] = 'tie'
         return TIE
     
@@ -65,9 +67,9 @@ def getResults(curr, c):
     bestNex = None
     for nex in nextstates:
         if c == 'x':
-            res = getResults(nex, 'o')
+            res = getResults(nex, 'o') - 1
         else:
-            res = getResults(nex, 'x')
+            res = getResults(nex, 'x') - 1
         if res > bestRes:
             bestRes = res
             bestNex = nex
