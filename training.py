@@ -78,13 +78,15 @@ def getResults(curr, c):
     
     return ans / len(nextstates)
 
-getResults('---------C', 'x') #computer goes first
-getResults('---------P', 'o') #player goes first
+def main():
+    getResults('---------C', 'x') #computer goes first
+    getResults('---------P', 'o') #player goes first
 
-with open("gametree.pkl", "wb") as f:
-    pickle.dump(states, f)
+    with open("gametree.pkl", "wb") as f:
+        pickle.dump(states, f)
 
-#print(states['---------'])
+if __name__ == '__main__':
+    main()
 
 
 
